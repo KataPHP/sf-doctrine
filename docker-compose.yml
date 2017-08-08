@@ -1,0 +1,19 @@
+version: "2"
+
+services:
+    db:
+        image: mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+        ports:
+            - "127.0.0.1:3309:3306"
+    pma:
+       image: phpmyadmin/phpmyadmin
+       depends_on:
+           - db
+       environment:
+           PMA_HOST: db
+           PMA_USER: root
+           PMA_PASSWORD: root
+       ports:
+           - "127.0.0.1:8085:80"
